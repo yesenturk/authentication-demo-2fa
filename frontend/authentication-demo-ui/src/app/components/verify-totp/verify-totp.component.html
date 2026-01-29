@@ -1,0 +1,81 @@
+<div class="verify-container">
+  <div class="verify-card">
+    <div class="verify-header">
+      <i class="fas fa-mobile-alt"></i>
+      <h2>İki Faktörlü Doğrulama</h2>
+      <p>Google Authenticator ile doğrulama yapın</p>
+    </div>
+
+    <!-- QR Kod -->
+    <div class="qr-section">
+      <div class="qr-wrapper">
+        <img [src]="qrCodeImage" alt="QR Code" class="qr-image" />
+      </div>
+      <div class="qr-instructions">
+        <h5><i class="fas fa-info-circle"></i> Nasıl Kullanılır?</h5>
+        <ol>
+          <li>Google Authenticator uygulamasını açın</li>
+          <li>Yukarıdaki QR kodu taratın</li>
+          <li>Uygulamada görünen 6 haneli kodu girin</li>
+        </ol>
+      </div>
+    </div>
+
+    <form [formGroup]="verifyForm" (ngSubmit)="onSubmit()">
+      <!-- Hata Mesajı -->
+      <div class="alert alert-danger" *ngIf="errorMessage">
+        <i class="fas fa-exclamation-circle"></i> {{ errorMessage }}
+      </div>
+
+      <!-- TOTP Kod -->
+      <div class="form-group">
+        <label for="totpCode">
+          <i class="fas fa-key"></i> Doğrulama Kodu
+        </label>
+        <input 
+          type="text" 
+          id="totpCode"
+          class="form-control code-input" 
+          formControlName="totpCode"
+          placeholder="000000"
+          maxlength="6"
+          (input)="onCodeInput($event)"
+          [class.is-invalid]="f['totpCode'].invalid && f['totpCode'].touched"
+        />
+        <div class="invalid-feedback" *ngIf="f['totpCode'].invalid && f['totpCode'].touched">
+          <span *ngIf="f['totpCode'].errors?.['required']">Doğrulama kodu gereklidir</span>
+          <span *ngIf="f['totpCode'].errors?.['pattern']">6 haneli rakam giriniz</span>
+        </div>
+      </div>
+
+      <!-- Butonlar -->
+      <div class="button-group">
+        <button 
+          type="submit" 
+          class="btn btn-primary"
+          [disabled]="loading || verifyForm.invalid"
+        >
+          <span *ngIf="!loading">
+            <i class="fas fa-check"></i> Doğrula
+          </span>
+          <span *ngIf="loading">
+            <i class="fas fa-spinner fa-spin"></i> Doğrulanıyor...
+          </span>
+        </button>
+
+        <button 
+          type="button" 
+          class="btn btn-secondary"
+          (click)="cancel()"
+          [disabled]="loading"
+        >
+          <i class="fas fa-times"></i> İptal
+        </button>
+      </div>
+    </form>
+
+    <div class="verify-footer">
+      <p><i class="fas fa-shield-alt"></i> Bu cihaz bir sonraki girişte hatırlanacak</p>
+    </div>
+  </div>
+</div>

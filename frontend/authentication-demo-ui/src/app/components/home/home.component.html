@@ -1,0 +1,124 @@
+<div class="home-container">
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <i class="fas fa-shield-alt"></i>
+      <span>Authentication Demo</span>
+    </div>
+    <div class="navbar-user">
+      <i class="fas fa-user-circle"></i>
+      <span>{{ username }}</span>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="welcome-card">
+      <!-- Success Icon -->
+      <div class="success-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+
+      <!-- Welcome Message -->
+      <h1 class="welcome-title">Giriş Başarılı!</h1>
+      <p class="welcome-subtitle">
+        İki faktörlü kimlik doğrulama sistemi ile güvenli bir şekilde giriş yaptınız.
+      </p>
+
+      <!-- Info Cards -->
+      <div class="info-cards">
+        <div class="info-card">
+          <i class="fas fa-shield-check"></i>
+          <h3>Güvenli Bağlantı</h3>
+          <p>Hesabınız 2FA ile korunmaktadır</p>
+        </div>
+
+        <div class="info-card">
+          <i class="fas fa-laptop"></i>
+          <h3>Güvenilir Cihaz</h3>
+          <p>Bu cihaz hatırlandı</p>
+        </div>
+
+        <div class="info-card">
+          <i class="fas fa-clock"></i>
+          <h3>Son Giriş</h3>
+          <p>{{ currentDate | date: 'dd.MM.yyyy HH:mm' }}</p>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button class="btn btn-warning" (click)="openForgetModal()">
+          <i class="fas fa-trash-alt"></i>
+          Beni Unut
+        </button>
+
+        <button class="btn btn-danger" (click)="logout()">
+          <i class="fas fa-sign-out-alt"></i>
+          Çıkış Yap
+        </button>
+      </div>
+
+      <!-- Device Info -->
+      <div class="device-info">
+        <p>
+          <i class="fas fa-info-circle"></i>
+          <strong>Beni Unut</strong> butonuna tıklarsanız, bir sonraki girişte tekrar 2FA kodu istenecektir.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>
+      <i class="fas fa-lock"></i>
+      2FA Authentication System - Powered by .NET Core & Angular 16
+    </p>
+  </footer>
+</div>
+
+<!-- Forget Device Modal -->
+<div class="modal-overlay" *ngIf="showForgetModal" (click)="closeForgetModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3><i class="fas fa-exclamation-triangle"></i> Emin misiniz?</h3>
+      <button class="close-btn" (click)="closeForgetModal()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <p>
+        Bu cihazı unutturmak istediğinize emin misiniz?
+      </p>
+      <p class="warning-text">
+        <i class="fas fa-info-circle"></i>
+        Bir sonraki girişinizde tekrar Google Authenticator ile 2FA kodu girmeniz gerekecektir.
+      </p>
+    </div>
+
+    <div class="modal-footer">
+      <button 
+        class="btn btn-secondary" 
+        (click)="closeForgetModal()"
+        [disabled]="forgetLoading"
+      >
+        <i class="fas fa-times"></i> İptal
+      </button>
+
+      <button 
+        class="btn btn-danger" 
+        (click)="confirmForgetDevice()"
+        [disabled]="forgetLoading"
+      >
+        <span *ngIf="!forgetLoading">
+          <i class="fas fa-trash-alt"></i> Evet, Unut
+        </span>
+        <span *ngIf="forgetLoading">
+          <i class="fas fa-spinner fa-spin"></i> İşleniyor...
+        </span>
+      </button>
+    </div>
+  </div>
+</div>

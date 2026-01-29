@@ -1,0 +1,70 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <i class="fas fa-lock"></i>
+      <h2>Giriş Yap</h2>
+      <p>İki faktörlü kimlik doğrulama sistemi</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!-- Hata Mesajı -->
+      <div class="alert alert-danger" *ngIf="errorMessage">
+        <i class="fas fa-exclamation-circle"></i> {{ errorMessage }}
+      </div>
+
+      <!-- Kullanıcı Adı -->
+      <div class="form-group">
+        <label for="username">
+          <i class="fas fa-user"></i> Kullanıcı Adı
+        </label>
+        <input type="text" id="username" class="form-control" formControlName="username"
+          placeholder="Kullanıcı adınızı girin" [class.is-invalid]="f['username'].invalid && f['username'].touched" />
+        <div class="invalid-feedback" *ngIf="f['username'].invalid && f['username'].touched">
+          <span *ngIf="f['username'].errors?.['required']">Kullanıcı adı gereklidir</span>
+          <span *ngIf="f['username'].errors?.['minlength']">En az 3 karakter olmalıdır</span>
+        </div>
+      </div>
+
+      <!-- Şifre -->
+      <div class="form-group">
+        <label for="password">
+          <i class="fas fa-key"></i> Şifre
+        </label>
+        <div class="password-input-wrapper">
+          <input [type]="showPassword ? 'text' : 'password'" id="password" class="form-control"
+            formControlName="password" placeholder="Şifrenizi girin"
+            [class.is-invalid]="f['password'].invalid && f['password'].touched" />
+          <button type="button" class="password-toggle" (click)="togglePassword()">
+            <i [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+          </button>
+        </div>
+        <div class="invalid-feedback d-block" *ngIf="f['password'].invalid && f['password'].touched">
+          <span *ngIf="f['password'].errors?.['required']">Şifre gereklidir</span>
+          <span *ngIf="f['password'].errors?.['minlength']">En az 6 karakter olmalıdır</span>
+        </div>
+      </div>
+
+      <!-- Giriş Butonu -->
+      <button type="submit" class="btn btn-primary btn-block" [disabled]="loading || loginForm.invalid">
+        <span *ngIf="!loading">
+          <i class="fas fa-sign-in-alt"></i> Giriş Yap
+        </span>
+        <span *ngIf="loading">
+          <i class="fas fa-spinner fa-spin"></i> Giriş yapılıyor...
+        </span>
+      </button>
+    </form>
+
+    <div class="login-footer">
+      <p><i class="fas fa-shield-alt"></i> Güvenli bağlantı ile korunmaktadır</p>
+    </div>
+    <div class="register-link-section">
+      <p>
+        Henüz hesabınız yok mu?
+        <a routerLink="/register" class="register-link">
+          <i class="fas fa-user-plus"></i> Kayıt Ol
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
