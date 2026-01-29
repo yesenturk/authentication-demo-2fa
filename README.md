@@ -222,13 +222,8 @@
 - ✅ Cihaz başarıyla unutuluyor
 - ✅ Sonraki girişte 2FA soruluyor
 
-## 🐛 Bilinen Sorunlar
-
-- ~~Aynı PC'den farklı kullanıcılar giriş yapamıyordu~~ ✅ **Düzeltildi**
-
 ## 📝 TODO
 
-- [ ] Ekran görüntüleri ekle
 - [ ] Unit testler yaz
 - [ ] Docker support ekle
 - [ ] Email verification ekle
@@ -237,59 +232,7 @@
 - [ ] Admin paneli
 - [ ] Aktif cihazları listeleme
 
-## 🤝 Katkıda Bulunma
-
-1. Bu repository'yi fork'la
-2. Feature branch oluştur (`git checkout -b feature/amazing-feature`)
-3. Değişikliklerini commit et (`git commit -m 'Add some amazing feature'`)
-4. Branch'ini push'la (`git push origin feature/amazing-feature`)
-5. Pull Request oluştur
-
-## 📄 Lisans
-
-Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakın.
-
 ## 👨‍💻 Geliştirici
 
 **Yunus Emre Şentürk**  
 GitHub: [@yesenturk](https://github.com/yesenturk)
-
----
-
-
-```
-MIT License
-
-Copyright (c) 2025 Yunus Emre Şentürk
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
-
----
-
-### **3. Ekran Görüntüleri Klasörü**
-
-Repository'nin kök dizininde `screenshots` klasörü oluştur ve ekran görüntülerini buraya koy:
-```
-authentication-demo-2fa/
-├── screenshots/
-│   ├── login.png
-│   ├── register.png
-│   ├── 2fa.png
-│   └── home.png
